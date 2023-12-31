@@ -1,6 +1,7 @@
 #!/usr/bin
 #Copyright 2021 AllHackingTools
 #Written by : Misha Korzhik
+#Written by : 
 #Github     : http://github.com/mishakorzik
 
 import requests
