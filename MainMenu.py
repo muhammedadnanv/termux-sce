@@ -134,6 +134,10 @@ elif(op==24):
  os.system("clear && cd && cd AllHackingTools && bash Logo.sh")
  print("\033[1;31;40mExiting System...")
  time.sleep(0.7)
+ elif(op==25):
+ os.system("clear && cd && cd AllHackingTools && bash.sh")
+ print("\033[1;31;40mExiting System...")
+ time.sleep(0.7)
 else:
  print("\033[1;31;40mInvalid input. Reloading Tools") 
  time.sleep(1.6)
