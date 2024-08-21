@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Podcast Opinion Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 800px;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Opinion on Starting a YouTube Podcast</h1>
+        <form id="opinionForm">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="name" class="form-label">Name (Optional):</label>
+                    <input type="text" id="name" name="name" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="email" class="form-label">Email (Optional):</label>
+                    <input type="email" id="email" name="email" class="form-control">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="interest" class="form-label">How interested are you in a YouTube podcast?</label>
+                <select id="interest" name="interest" class="form-select">
+                    <option value="very-interested">Very Interested</option>
+                    <option value="somewhat-interested">Somewhat Interested</option>
+                    <option value="not-very-interested">Not Very Interested</option>
+                    <option value="not-interested">Not Interested at All</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="topics" class="form-label">What topics would you like the podcast to cover?</label>
+                <textarea id="topics" name="topics" rows="4" class="form-control"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="format" class="form-label">Do you have any preferred formats for the podcast?</label>
+                <select id="format" name="format" class="form-select">
+                    <option value="interviews">Interviews</option>
+                    <option value="discussions">Discussions</option>
+                    <option value="qa">Q&A</option>
+                    <option value="reviews">Reviews</option>
+                    <option value="other">Other (Please specify)</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="frequency" class="form-label">How often would you like new episodes to be released?</label>
+                <select id="frequency" name="frequency" class="form-select">
+                    <option value="weekly">Weekly</option>
+                    <option value="bi-weekly">Bi-weekly</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="other">Other (Please specify)</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="duration" class="form-label">What duration do you prefer for each episode?</label>
+                <select id="duration" name="duration" class="form-select">
+                    <option value="under-15-min">Under 15 minutes</option>
+                    <option value="15-30-min">15-30 minutes</option>
+                    <option value="30-60-min">30-60 minutes</option>
+                    <option value="over-60-min">Over 60 minutes</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="guests" class="form-label">Do you have any suggestions for potential guests or collaborators?</label>
+                <textarea id="guests" name="guests" rows="4" class="form-control"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="reasons" class="form-label">What are your main reasons for supporting or not supporting this idea?</label>
+                <textarea id="reasons" name="reasons" rows="4" class="form-control"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="comments" class="form-label">Any additional comments or ideas?</label>
+                <textarea id="comments" name="comments" rows="4" class="form-control"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="channel-name" class="form-label">Suggest a Name for the YouTube Podcast Channel:</label>
+                <input type="text" id="channel-name" name="channel-name" class="form-control">
+            </div>
+            <div class="d-grid gap-2">
+                <button type="button" class="btn btn-success" onclick="sendToWhatsApp()">Send to WhatsApp</button>
+            </div>
+            <div class="error mt-3" id="error-message">Please fill in all required fields.</div>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+    <script>
+        function sendToWhatsApp() {
+            const name = encodeURIComponent(document.getElementById('name').value.trim());
+            const email = encodeURIComponent(document.getElementById('email').value.trim());
+            const interest = encodeURIComponent(document.getElementById('interest').value);
+            const topics = encodeURIComponent(document.getElementById('topics').value.trim());
+            const format = encodeURIComponent(document.getElementById('format').value);
+            const frequency = encodeURIComponent(document.getElementById('frequency').value);
+            const duration = encodeURIComponent(document.getElementById('duration').value);
+            const guests = encodeURIComponent(document.getElementById('guests').value.trim());
+            const reasons = encodeURIComponent(document.getElementById('reasons').value.trim());
+            const comments = encodeURIComponent(document.getElementById('comments').value.trim());
+            const channelName = encodeURIComponent(document.getElementById('channel-name').value.trim());
+
+            if (!interest || !topics || !format || !frequency || !duration || !reasons) {
+                document.getElementById('error-message').style.display = 'block';
+                return;
+            }
+
+            const message = `Name: ${name}\nEmail: ${email}\nInterest: ${interest}\nTopics: ${topics}\nFormat: ${format}\nFrequency: ${frequency}\nDuration: ${duration}\nGuests: ${guests}\nReasons: ${reasons}\nComments: ${comments}\nSuggested Channel Name: ${channelName}`;
+            const phoneNumber = '+919656778508';
+            const url = `https://wa.me/${phoneNumber}?text=${message}`;
+
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
